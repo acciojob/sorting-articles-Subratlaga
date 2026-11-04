@@ -1,16 +1,71 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphabetical Band List</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(rgba(255, 255, 240, 0.25), rgba(255, 255, 240, 0.25)),
+        url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=80")
+        center / cover fixed;
+    }
+
+    #band {
+      width: min(568px, 100%);
+      margin: 0 auto;
+      padding: 0;
+      list-style-type: square;
+      background: white;
+    }
+
+    #band li {
+      min-height: 71px;
+      padding: 20px 20px 20px 53px;
+      border-bottom: 1px solid #e8e8e8;
+      font-size: 22px;
+    }
+  </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+  <ul id="band"></ul>
 
+  <script>
+    const bands = [
+      "The Plot in You",
+      "The Devil Wears Prada",
+      "Pierce the Veil",
+      "Norma Jean",
+      "The Bled",
+      "Say Anything",
+      "The Midway State",
+      "We Came as Romans",
+      "Counterparts",
+      "Oh, Sleeper",
+      "A Skylit Drive",
+      "Anywhere But Here",
+      "An Old Dog"
+    ];
+
+    const sortedBands = bands.sort((first, second) => {
+      const firstTitle = first.replace(/^(a|an|the)\s+/i, "");
+      const secondTitle = second.replace(/^(a|an|the)\s+/i, "");
+
+      return firstTitle.localeCompare(secondTitle);
+    });
+
+    document.getElementById("band").innerHTML = sortedBands
+      .map(band => `<li>${band}</li>`)
+      .join("");
+  </script>
 </body>
-
 </html>
